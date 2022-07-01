@@ -1,3 +1,4 @@
+#коммент
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
 
 
@@ -24,30 +25,20 @@ kb_login = ReplyKeyboardMarkup(resize_keyboard=True,one_time_keyboard=True)
 kb_login.add(button_login).add(button_signin).add(button_admin)
 
 button_diary = KeyboardButton('📜Мой дневник📜')
-button_homework = KeyboardButton('Моё дз')
+button_orders = KeyboardButton('Моё дз')
 
 
 kb_main = ReplyKeyboardMarkup(resize_keyboard=True)
-kb_main.add(button_homework).row(button_diary)
+kb_main.add(button_orders).row(button_menu)
 
 
-kb_student = ReplyKeyboardMarkup(resize_keyboard=True)
-#--------------------------
-kb_student.add(kb_cancel)
 
-button_orders_burgers = KeyboardButton('🍔Мои Бургеры🍔')
-
-
-kb_orders = ReplyKeyboardMarkup(resize_keyboard=True)
-kb_orders.row(button_orders_burgers).add(button_cancel)
-
-
-button_admin_add_new_good = KeyboardButton('Добавить дз')
+button_admin_add_new_homework = KeyboardButton('Добавить дз')
 button_admin_select_orders = KeyboardButton('Домашние задания')
 
 
 kb_admin_main = ReplyKeyboardMarkup(resize_keyboard=True,one_time_keyboard=True)
-kb_admin_main.row(button_admin_add_new_good,button_admin_select_orders)
+kb_admin_main.row(button_admin_add_new_homework,button_admin_select_orders)
 
 
 kb_admin_delete_orders = ReplyKeyboardMarkup(resize_keyboard=True)
