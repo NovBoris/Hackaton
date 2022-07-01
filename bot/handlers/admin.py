@@ -42,7 +42,7 @@ async def admin_userpass(message: types.Message, state: FSMContext):
             await message.reply('Логин введен неверно', reply_markup=kb_login)
             await state.finish()
 
-
+#комент для коммита
 async def add_homework_start(message: types.Message):
     await oth.adminAddHomeWork.name.set()
     await message.reply('Введите имя ученика которому нужно отправить ДЗ: ', reply_markup=main_menu_kb)
