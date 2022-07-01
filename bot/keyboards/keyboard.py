@@ -31,19 +31,13 @@ kb_main = ReplyKeyboardMarkup(resize_keyboard=True)
 kb_main.add(button_orders).row(button_menu)
 
 
-button_orders_burgers = KeyboardButton('🍔Мои Бургеры🍔')
 
-
-kb_orders = ReplyKeyboardMarkup(resize_keyboard=True)
-kb_orders.row(button_orders_burgers).add(button_cancel)
-
-
-button_admin_add_new_good = KeyboardButton('Добавить дз')
+button_admin_add_new_homework = KeyboardButton('Добавить дз')
 button_admin_select_orders = KeyboardButton('Домашние задания')
 
 
 kb_admin_main = ReplyKeyboardMarkup(resize_keyboard=True,one_time_keyboard=True)
-kb_admin_main.row(button_admin_add_new_good,button_admin_select_orders)
+kb_admin_main.row(button_admin_add_new_homework,button_admin_select_orders)
 
 
 kb_admin_delete_orders = ReplyKeyboardMarkup(resize_keyboard=True)
