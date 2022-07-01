@@ -23,7 +23,7 @@ button_admin = KeyboardButton('Преподаватель')
 kb_login = ReplyKeyboardMarkup(resize_keyboard=True,one_time_keyboard=True)
 kb_login.add(button_login).add(button_signin).add(button_admin)
 
-button_menu = KeyboardButton('📜Мой дневник📜')
+button_diary = KeyboardButton('📜Мой дневник📜')
 button_orders = KeyboardButton('Моё дз')
 
 
