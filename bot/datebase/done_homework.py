@@ -6,7 +6,7 @@ def SelectTable(dbpath):
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        sqlite_selection_query = "SELECT * FROM burgers;"
+        sqlite_selection_query = "SELECT * FROM done_homework;"
         cursor.execute(sqlite_selection_query)
         record = cursor.fetchall()
         cursor.close()
@@ -24,34 +24,13 @@ def selectFromUsernames(name,dbpath):
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        sqlite_selection_query = "SELECT * FROM burgers WHERE username=?;"
+        sqlite_selection_query = "SELECT * FROM done_homework WHERE username=?;"
         cursor.execute(sqlite_selection_query,(name,))
         record = cursor.fetchall()
         cursor.close()
         return record
     except sqlite3.Error as error:
-        print("Не удалось выбрать данные по именам поситителей.", error)
-    finally:
-        if sqlite_connection:
-            sqlite_connection.close()
-            print("Соединение с SQLite закрыто")
-
-
-def maxID(dbpath):
-    try:
-        sqlite_connection = sqlite3.connect(dbpath)
-        cursor = sqlite_connection.cursor()
-        print('Соединение с базой данных прошло успешно.')
-
-        sqlite_selection_query = "SELECT MAX(id) FROM burgers;"
-        cursor.execute(sqlite_selection_query)
-        record = cursor.fetchone()
-        cursor.close()
-        if record[0] == None:
-            return 0
-        return record[0]
-    except sqlite3.Error as error:
-        print("Не удалось выбрать данные из таблицы.", error)
+        print("Не удалось выбрать данные по именам студентов.", error)
     finally:
         if sqlite_connection:
             sqlite_connection.close()
@@ -59,15 +38,16 @@ def maxID(dbpath):
 
 
 
-def addNewBurger(record: list,dbpath):
+
+def addNewHomework(record: list,dbpath):
     print()
     try:
         sqlite_connection = sqlite3.connect(dbpath)
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        insert_query = '''INSERT INTO burgers (id,photo,username,userpass,adress,name,price,ingridients)
-                          VALUES (?,?,?,?,?,?,?,?);'''
+        insert_query = '''INSERT INTO done_homework (id,photo,username,userpass,adminname)
+                          VALUES (?,?,?,?,?);'''
         cursor.executemany(insert_query,(record,))
         print('Запись добавленна')
         sqlite_connection.commit()
@@ -81,17 +61,13 @@ def addNewBurger(record: list,dbpath):
     print()
 
 
-
-
-
-
 def deleteRecordAdmin(id,dbpath):
     try:
         sqlite_connection = sqlite3.connect(dbpath)
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        sqlite_delete_query = "DELETE FROM burgers WHERE id=? ;"
+        sqlite_delete_query = "DELETE FROM done_homework WHERE id=? ;"
         cursor.execute(sqlite_delete_query, (id,))
         sqlite_connection.commit()
         print('Запись', id, 'успешно удалена')
