@@ -16,4 +16,3 @@ class adminAddHomeWork(StatesGroup):
     name = State()
     photo = State()
 
-#коммент для коммита
