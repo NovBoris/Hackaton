@@ -25,4 +25,4 @@ def script(name_file,dbpath):
             sqlite_connection.close()
             print("Соединение с SQLite закрыто")
 
-script('tables.sql','../delivery.db')
+script('tables.sql','../school.db')
