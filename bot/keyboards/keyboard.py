@@ -18,7 +18,7 @@ kb_cancel.add(button_cancel)
 
 button_login = KeyboardButton('Регистрация')
 button_signin = KeyboardButton('Вход')
-button_admin = KeyboardButton('Преподватаель')
+button_admin = KeyboardButton('Преподаватель')
 
 kb_login = ReplyKeyboardMarkup(resize_keyboard=True,one_time_keyboard=True)
 kb_login.add(button_login).add(button_signin).add(button_admin)
