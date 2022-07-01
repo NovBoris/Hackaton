@@ -71,5 +71,5 @@ def addNewUser(record: list,dbpath):
 
 
 
-addNewUser(['admin','adminPass'],'../schools.db')
+addNewUser(['admin','adminPass'],'../school.db')
 
