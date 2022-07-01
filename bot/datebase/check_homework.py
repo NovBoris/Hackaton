@@ -1,15 +1,12 @@
 import sqlite3
 
-
-
-
 def SelectTable(dbpath):
     try:
         sqlite_connection = sqlite3.connect(dbpath)
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        sqlite_selection_query = "SELECT * FROM rolls;"
+        sqlite_selection_query = "SELECT * FROM check_homework;"
         cursor.execute(sqlite_selection_query)
         record = cursor.fetchall()
         cursor.close()
@@ -27,7 +24,7 @@ def selectFromUsernames(name,dbpath):
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        sqlite_selection_query = "SELECT * FROM rolls WHERE username=?;"
+        sqlite_selection_query = "SELECT * FROM check_homework WHERE username=?;"
         cursor.execute(sqlite_selection_query,(name,))
         record = cursor.fetchall()
         cursor.close()
@@ -39,38 +36,15 @@ def selectFromUsernames(name,dbpath):
             sqlite_connection.close()
             print("Соединение с SQLite закрыто")
 
-
-def maxID(dbpath):
-    try:
-        sqlite_connection = sqlite3.connect(dbpath)
-        cursor = sqlite_connection.cursor()
-        print('Соединение с базой данных прошло успешно.')
-
-        sqlite_selection_query = "SELECT MAX(id) FROM rolls;"
-        cursor.execute(sqlite_selection_query)
-        record = cursor.fetchone()
-        cursor.close()
-        if record[0] == None:
-            return 0
-        return record[0]
-    except sqlite3.Error as error:
-        print("Не удалось выбрать данные из таблицы.", error)
-    finally:
-        if sqlite_connection:
-            sqlite_connection.close()
-            print("Соединение с SQLite закрыто")
-
-
-
-def addNewRoll(record: list,dbpath):
+def addNewHomework(record: list,dbpath):
     print()
     try:
         sqlite_connection = sqlite3.connect(dbpath)
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        insert_query = '''INSERT INTO rolls (id,photo,username,userpass,adress,name,price,ingridients)
-                          VALUES (?,?,?,?,?,?,?,?);'''
+        insert_query = '''INSERT INTO check_homework (id,photo,username,userpass, adminname, adminpass, mark)
+                          VALUES (?,?,?,?,?,?,?);'''
         cursor.executemany(insert_query,(record,))
         print('Запись добавленна')
         sqlite_connection.commit()
@@ -93,7 +67,7 @@ def deleteRecordAdmin(id,dbpath):
         cursor = sqlite_connection.cursor()
         print('Соединение с базой данных прошло успешно.')
 
-        sqlite_delete_query = "DELETE FROM rolls WHERE id=? ;"
+        sqlite_delete_query = "DELETE FROM check_homework WHERE id=? ;"
         cursor.execute(sqlite_delete_query,(id,))
         sqlite_connection.commit()
         print('Запись', id, 'успешно удалена')
@@ -103,10 +77,3 @@ def deleteRecordAdmin(id,dbpath):
         if sqlite_connection:
             sqlite_connection.close()
             print("Соединение с SQLite закрыто")
-
-
-
-
-
-
-
